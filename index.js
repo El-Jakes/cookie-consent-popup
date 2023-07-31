@@ -4,6 +4,7 @@ const consentForm = document.querySelector("#consent-form");
 const modalText = document.querySelector("#modal-text");
 const modalInner = document.querySelector("#modal-inner");
 const declineBtn = document.querySelector('#decline-btn')
+const modalChoiceBtns = document.querySelector('#modal-choice-btns')
 
 setTimeout(() => (modal.style.display = "inline"), 1500);
 
@@ -39,5 +40,5 @@ consentForm.addEventListener("submit", (e) => {
 });
 
 declineBtn.addEventListener("mouseover", () => {
-  alert('hovered')
+  modalChoiceBtns.classList.toggle('btn-switch')
 });
