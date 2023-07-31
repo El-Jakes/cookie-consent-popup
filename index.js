@@ -2,7 +2,8 @@ const modal = document.querySelector("#modal");
 const modalClose = document.querySelector("#modal-close-btn");
 const consentForm = document.querySelector("#consent-form");
 const modalText = document.querySelector("#modal-text");
-const modalInner = document.querySelector('#modal-inner')
+const modalInner = document.querySelector("#modal-inner");
+const declineBtn = document.querySelector('#decline-btn')
 
 setTimeout(() => (modal.style.display = "inline"), 1500);
 
@@ -12,6 +13,10 @@ modalClose.addEventListener("click", () => {
 
 consentForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  const consentFormData = new FormData(consentForm);
+  const fullName = consentFormData.get("fullName");
+
   modalText.innerHTML = `<div class="modal-inner-loading">
     <img src="images/loading.svg" class="loading">
     <p id="uploadText">
@@ -23,11 +28,16 @@ consentForm.addEventListener("submit", (e) => {
        sale...`;
   }, 1500);
   setTimeout(() => {
-    modalInner.innerHTML = `<h2>Thank you sucker! </h2>
+    modalInner.innerHTML = `<h2>Thanks <span class="modal-display-name">${fullName}</span>, you sucker! </h2>
     <p>We just sold the rights to your eternal soul.</p>
     <div class="idiot-gif">
         <img src="images/pirate.gif">
     </div>
     `;
+    modalClose.disabled = false    
   }, 3000);
+});
+
+declineBtn.addEventListener("mouseover", () => {
+  alert('hovered')
 });
